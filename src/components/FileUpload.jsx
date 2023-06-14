@@ -64,7 +64,7 @@ export default function FileUpload() {
               <div className="mt-4 flex text-sm leading-6 text-gray-600">
                 <label
                   htmlFor="file-upload"
-                  className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
+                  className="relative cursor-pointer rounded-md bg-white font-semibold text-green-800 focus-within:outline-none focus-within:ring-2 focus-within:ring-green-800 focus-within:ring-offset-2 hover:text-green-700"
                 >
                   {imageUpload ? (
                     <span>{imageUpload.name} </span>
