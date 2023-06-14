@@ -1,18 +1,25 @@
 import React from 'react'
 import { Header } from '@/components/Header'
-import { storage } from '@/firebase/config'
+import { storage, db } from '@/firebase/config'
 import { ref, deleteObject } from 'firebase/storage'
+import { doc, deleteDoc } from 'firebase/firestore'
 import FileUpload from '@/components/FileUpload'
 
 import { useImgContext } from '@/hooks/useImgContext'
 import { useAuthContext } from '@/hooks/useAuthContext'
+import { useImgGalary } from '@/hooks/useImgGalary'
 
 export default function Portfolio() {
   const { imgList } = useImgContext()
   const { user, authIsReady } = useAuthContext()
+  const { imgGalary } = useImgGalary('Products')
 
-  const DeleteImg = (imgPath) => {
-    const desertRef = ref(storage, imgPath)
+  const DeleteImg = (imgPath, id) => {
+    const path = ''
+    const desertRef = ref(storage, 'images/' + imgPath)
+    const refDoc = doc(db, 'Products', id)
+    deleteDoc(refDoc)
+
     deleteObject(desertRef)
       .then(() => {
         console.log('Done')
@@ -20,7 +27,6 @@ export default function Portfolio() {
       .catch((error) => {
         console.log('Erroe')
       })
-    console.log(imgList)
   }
 
   return (
@@ -37,7 +43,7 @@ export default function Portfolio() {
             </div>
           )}
           <div className="col-span-2 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-            {imgList?.map((prod) => (
+            {imgGalary?.map((prod) => (
               <a key={prod.name} className="group">
                 <div className="aspect-h-1 aspect-w-1 sm:aspect-h-3 sm:aspect-w-2 w-full overflow-hidden rounded-lg">
                   <div className="relative flex-col">
@@ -47,7 +53,7 @@ export default function Portfolio() {
                         <button
                           type="button"
                           className="group relative -mr-1 h-3.5 w-3.5 rounded-sm "
-                          onClick={() => DeleteImg(prod.name)}
+                          onClick={() => DeleteImg(prod.name, prod.id)}
                         >
                           <span className="sr-only">Remove</span>
                           <svg
@@ -61,7 +67,7 @@ export default function Portfolio() {
                       </span>
                     )}
                     <img
-                      src={prod.url}
+                      src={prod.imgSrc}
                       className="h-full w-full object-cover object-center "
                     />
                   </div>

@@ -1,39 +1,53 @@
 import { React, useState, useEffect } from 'react'
-import { storage } from '@/firebase/config'
+import { v4 as uuid } from 'uuid'
+import { storage, db } from '@/firebase/config'
 import { ref, getDownloadURL, listAll, uploadBytes } from 'firebase/storage'
+import { collection, addDoc } from 'firebase/firestore'
+
 import { useImgContext } from '@/hooks/useImgContext'
 import { useAuthContext } from '@/hooks/useAuthContext'
 
 export default function FileUpload() {
-  const { setImgList } = useImgContext()
+  const { imgList, setImgList } = useImgContext()
   const { user, authIsReady } = useAuthContext()
+  const unique_id = uuid()
 
   const [imageUpload, setImageUpload] = useState()
   const imageRef = ref(storage, 'images/')
+  const [newUrl, setNewUrl] = useState(null)
 
-  const uploadFile = () => {
+  const uploadFile = async () => {
     if (!imageUpload) return
     const imageReff = ref(storage, 'images/' + imageUpload.name)
-    uploadBytes(imageReff, imageUpload).then((snapshot) => {
+    uploadBytes(imageReff, imageUpload).then(async (snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
         setImgList((prev) => [...prev, { url: url }])
+        addImg(url, imageUpload.name)
       })
       alert('upload done')
     })
     setImageUpload(null)
   }
+  const addImg = async (url, name) => {
+    await addDoc(collection(db, 'Products'), {
+      imgSrc: url,
+      href: '#',
+      name: name,
+    })
+  }
 
   useEffect(() => {
-    listAll(imageRef).then((res) => {
-      res.items.forEach((item) => {
-        getDownloadURL(item).then((url) => {
-          setImgList((prev) => [
-            ...prev,
-            { url: url, name: item._location.path_ },
-          ])
-        })
-      })
-    })
+    // listAll(imageRef).then((res) => {
+    //   res.items.forEach((item) => {
+    //     getDownloadURL(item).then((url) => {
+    //       setImgList((prev) => [
+    //         ...prev,
+    //         { url: url, name: item._location.path_ },
+    //       ])
+    //       console.log(imgList)
+    //     })
+    //   })
+    // })
   }, [])
   return (
     <>
