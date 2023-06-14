@@ -20,6 +20,7 @@ export default function Portfolio() {
       .catch((error) => {
         console.log('Erroe')
       })
+    console.log(imgList)
   }
 
   return (
