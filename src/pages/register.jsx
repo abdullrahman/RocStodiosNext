@@ -36,7 +36,10 @@ export default function Register() {
       <AuthLayout>
         <div className="flex flex-col">
           <Link href="/" aria-label="Home">
-            <Logo className="h-10 w-auto" />
+            <img
+              src="https://firebasestorage.googleapis.com/v0/b/rocstodios.appspot.com/o/images%2FMy%20project%20Logo.png?alt=media&token=94857d39-c901-47df-9efe-b4c46cc3ec06"
+              className="mx-auto h-20 w-auto"
+            />
           </Link>
           <div className="mt-20">
             <h2 className="text-lg font-semibold text-gray-900">

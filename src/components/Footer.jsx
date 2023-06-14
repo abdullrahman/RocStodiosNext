@@ -9,7 +9,11 @@ export function Footer() {
     <footer className="bg-slate-50">
       <Container>
         <div className="py-16">
-          <Logo className="mx-auto h-10 w-auto" />
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/rocstodios.appspot.com/o/images%2FMy%20project%20Logo.png?alt=media&token=94857d39-c901-47df-9efe-b4c46cc3ec06"
+            className="mx-auto h-20 w-auto"
+          />
+          {/* <Logo className="mx-auto h-10 w-auto" /> */}
           <nav className="mt-10 text-sm" aria-label="quick links">
             <div className="-my-1 flex justify-center gap-x-6">
               <NavLink href="/">Home</NavLink>

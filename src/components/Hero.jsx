@@ -6,7 +6,7 @@ export function Hero() {
     <Container className="pb-16 pt-20 text-center lg:pt-32">
       <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
         We Magically{' '}
-        <span className="relative whitespace-nowrap text-blue-600">
+        <span className="relative whitespace-nowrap text-green-800">
           <svg
             aria-hidden="true"
             viewBox="0 0 418 42"
@@ -19,9 +19,7 @@ export function Hero() {
         </span>{' '}
         to ART .
       </h1>
-      {/* <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
-        We Magically 
-      </p> */}
+
       <div className="mt-10 flex justify-center gap-x-6">
         <Button href="/Portfolio">Our Galary</Button>
       </div>

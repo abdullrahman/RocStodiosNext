@@ -112,8 +112,12 @@ export function Header() {
         <Container>
           <nav className="relative z-50 flex justify-between ">
             <div className="flex items-center md:gap-x-12">
-              <Link href="#" aria-label="Home">
-                <Logo className="h-10 w-auto" />
+              <Link href="/" aria-label="Home">
+                <img
+                  src="https://firebasestorage.googleapis.com/v0/b/rocstodios.appspot.com/o/images%2FMy%20project%20Logo.png?alt=media&token=94857d39-c901-47df-9efe-b4c46cc3ec06"
+                  className="mx-auto h-20 w-auto"
+                />
+                {/* <Logo className="h-10 w-auto" /> */}
               </Link>
               <div className="hidden md:flex md:gap-x-6">
                 <NavLink href="/">Home</NavLink>
