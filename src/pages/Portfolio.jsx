@@ -38,7 +38,7 @@ export default function Portfolio() {
             Products
           </h2>
           {authIsReady && (
-            <div className=" w-[30%] py-2">
+            <div className=" w-full py-2 lg:w-[31%]">
               <FileUpload />
             </div>
           )}
